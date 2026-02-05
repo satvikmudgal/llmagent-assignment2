@@ -284,6 +284,26 @@
   margin-top: 1.5rem;
 }
 
+.budget-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-symbol {
+  position: absolute;
+  left: 0.75rem;
+  color: #666;
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.budget-input {
+  padding-left: 2rem;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 2.5rem;

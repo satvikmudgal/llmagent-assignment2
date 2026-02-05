@@ -10,6 +10,7 @@ function TripForm() {
     const [arrivalAirport, setArrivalAirport] = useState(null);
     const [destinationType, setDestinationType] = useState('none'); // 'none', 'specific', 'natural'
     const [naturalLanguageDestination, setNaturalLanguageDestination] = useState('');
+    const [budget, setBudget] = useState('');
     const [tripJson, setTripJson] = useState(null);
 
     return (
@@ -108,6 +109,21 @@ function TripForm() {
                     className="date-picker-input"
                 />
             </div>
+            <div className="form-group">
+                <label>Budget (Optional)</label>
+                <div className="budget-input-wrapper">
+                    <span className="currency-symbol">$</span>
+                    <input
+                        type="number"
+                        className="date-picker-input budget-input"
+                        placeholder="Enter your budget (e.g., 1500)"
+                        value={budget}
+                        onChange={(e) => setBudget(e.target.value)}
+                        min="0"
+                        step="0.01"
+                    />
+                </div>
+            </div>
             <button
                 className="btn btn-primary"
                 onClick={() => {
@@ -125,7 +141,8 @@ function TripForm() {
                             : {}),
                         startDate: startDate ? startDate.toISOString().split('T')[0] : null,
                         endDate: endDate ? endDate.toISOString().split('T')[0] : null,
-                        ...(travelDays !== null ? { travelDays } : {})
+                        ...(travelDays !== null ? { travelDays } : {}),
+                        ...(budget && budget.trim() !== '' ? { budget: parseFloat(budget) } : {})
                     };
 
                     setTripJson(json);
@@ -150,7 +167,7 @@ function TripForm() {
                 </div>
             )}
 
-            {(startDate || endDate || departureAirport || arrivalAirport || naturalLanguageDestination) && (
+            {(startDate || endDate || departureAirport || arrivalAirport || naturalLanguageDestination || budget) && (
                 <div className="date-airport-range-display">
                     <div className="date-range-display">
                         {startDate && <p>Start: {startDate.toLocaleDateString()}</p>}
@@ -161,6 +178,9 @@ function TripForm() {
                         {departureAirport && <p>Departure: {departureAirport.label}</p>}
                         {arrivalAirport && <p>Destination: {arrivalAirport.label}</p>}
                         {naturalLanguageDestination && <p>Looking for: {naturalLanguageDestination}</p>}
+                        {budget && budget.trim() !== '' && (
+                            <p>Budget: ${parseFloat(budget).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                        )}
                     </div>
                 </div>
             )}
