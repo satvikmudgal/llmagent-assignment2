@@ -1,30 +1,27 @@
-import { useState } from 'react'
 import './App.css'
-import TripForm from './TripForm';
+import ChatInterface from './ChatInterface';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="app">
       <header className="header">
-        <h1 className="title">you tripping bro?</h1>
-        <p className="subtitle">dont have a bad trip maaaan </p>
+        <h1 className="title">Travel Assistant</h1>
+        <p className="subtitle">Ask me anything about travel planning</p>
       </header>
 
       <main className="main-content">
         <div className="card">
           <div className="card-header">
-            <h2>Trip Form</h2>
+            <h2>Chat</h2>
           </div>
           <div className="card-body">
-            <TripForm />
+            <ChatInterface />
           </div>
         </div>
       </main>
 
       <footer className="footer">
-        <p>whatcha reading this for nerd</p>
+        <p>Powered by DSPy</p>
       </footer>
     </div>
   )

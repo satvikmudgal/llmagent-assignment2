@@ -33,16 +33,16 @@ function AirportSelector({ placeholder = "Select departure city...", value, onCh
 
     return (
         <div className="form-group">
-            <Select
-                options={filteredOptions}
-                onInputChange={setInputValue}
+        <Select
+            options={filteredOptions}
+            onInputChange={setInputValue}
                 onChange={onChange}
                 value={value}
-                placeholder={placeholder}
-                isSearchable
-                filterOption={null} // Disable default filtering (we're doing it)
+            placeholder={placeholder}
+            isSearchable
+            filterOption={null} // Disable default filtering (we're doing it)
                 className="airport-select"
-            />
+        />
         </div>
     );
 }
