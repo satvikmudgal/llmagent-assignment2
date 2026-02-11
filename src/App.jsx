@@ -5,14 +5,14 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1 className="title">Travel Assistant</h1>
-        <p className="subtitle">Ask me anything about travel planning</p>
+        <h1 className="title">WanderL1ly</h1>
+        <p className="subtitle">Your AI Travel Planning Assistant</p>
       </header>
 
       <main className="main-content">
         <div className="card">
           <div className="card-header">
-            <h2>Chat</h2>
+            <h2>Chat with L1LY</h2>
           </div>
           <div className="card-body">
             <ChatInterface />
@@ -21,7 +21,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>Powered by DSPy</p>
+        <p>WanderL1ly - Your Personal Travel Planning Assistant</p>
       </footer>
     </div>
   )

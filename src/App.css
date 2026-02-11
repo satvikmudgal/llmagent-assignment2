@@ -2,13 +2,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-color: #BCD890;
 }
 
 .header {
   text-align: center;
   padding: 3rem 2rem 2rem;
-  color: white;
+  color: black;
 }
 
 .title {
@@ -51,8 +51,8 @@
 }
 
 .card-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: #E7F8CF;
+  color: black;
   padding: 1.5rem;
 }
 
