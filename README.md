@@ -39,7 +39,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The server will run on `http://localhost:5000`
+The server will run on `http://localhost:5001` (port 5000 is used by macOS AirPlay)
 
 ### Frontend (React)
 

@@ -11,19 +11,35 @@ if not os.environ.get("GOOGLE_API_KEY"):
     raise ValueError("GOOGLE_API_KEY environment variable is not set. Please set it in a .env file or export it.")
 
 # Initialize DSPy with Gemini
-lm = dspy.LM('gemini/gemini-1.5-pro')
+# Pass API key directly to LM constructor (like the working example)
+api_key = os.environ.get("GOOGLE_API_KEY")
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY environment variable is not set. Please set it in a .env file or export it.")
+
+# Use gemini/gemini-2.5-flash format (like the working example)
+lm = dspy.LM('gemini/gemini-2.5-flash', api_key=api_key)
 dspy.configure(lm=lm)
 
 # Simple DSPy module for travel assistance
 class TravelAssistant(dspy.Module):
     def __init__(self):
+        # Use ChainOfThought like the working example
         self.respond = dspy.ChainOfThought('context, question -> response')
 
     def forward(self, question, context=""):
         # Build context string from conversation history
         context_str = context if context else "This is the start of the conversation."
-        answer = self.respond(context=context_str, question=question)
-        return str(answer.response) if hasattr(answer, 'response') else str(answer)
+        try:
+            answer = self.respond(context=context_str, question=question)
+            # Extract response - ChainOfThought returns an object with 'response' attribute
+            if hasattr(answer, 'response'):
+                return str(answer.response)
+            elif hasattr(answer, 'answer'):
+                return str(answer.answer)
+            else:
+                return str(answer)
+        except Exception as e:
+            return f"Error in forward: {str(e)}"
 
 # Initialize assistant
 assistant = TravelAssistant()
