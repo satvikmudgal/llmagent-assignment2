@@ -6,12 +6,35 @@ A simple chat interface for travel planning powered by DSPy and React.
 
 ### Backend (Python/Flask)
 
-1. Install Python dependencies:
+**Requirements:** Python 3.8+ (no conda required - works with standard Python/pip)
+
+1. (Optional but recommended) Create a virtual environment:
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install Python dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Run the Flask server:
+3. Set up your API key:
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` and add your Google Gemini API key:
+     ```
+     GOOGLE_API_KEY=your-actual-api-key-here
+     ```
+   - Or export it directly:
+     ```bash
+     export GOOGLE_API_KEY="your-actual-api-key-here"
+     ```
+   - Get your API key from: https://makersuite.google.com/app/apikey
+
+4. Run the Flask server:
 ```bash
 python app.py
 ```

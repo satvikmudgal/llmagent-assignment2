@@ -39,3 +39,5 @@ build/
 .pytest_cache/
 *.pyc
 ragqa_arena_tech_corpus.jsonl
+.env
+.env.local
