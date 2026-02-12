@@ -1,18 +1,19 @@
-import { searchFlightOffers, searchFlightInspiration, searchHotels } from './api.js';
+import { searchFlightOffers, searchFlightInspiration, getHotelsByCity, fullPrettyOffers } from './api.js';
+
 
 async function testFlightSearch() {
   try {
-    const flights = await searchFlightOffers({
+    const flights = await fullPrettyOffers({
       originLocationCode: 'LAX',
       destinationLocationCode: 'JFK',
-      departureDate: '2026-02-10',
+      departureDate: '2026-02-20',
+      returnDate: '2026-04-01',
       adults: 1,
       max: 3
     });
-    console.log(`${flights.length} flights LAX -> JFK`);
-    console.log(flights[0])
-    console.log(flights[0].itineraries[0])
+    console.log(flights);
   } catch (err) {
+      console.error(err);
       console.error('Error! Description:', err.description);
   }
 }
@@ -31,13 +32,15 @@ async function testFlightInspiration() {
   }
 }
 
-// Test 3: Hotel Search
-async function testHotelSearch() {
+// Test 3: Hotel List
+async function testHotelList() {
   try {
-    const hotels = await searchHotels({
+    const hotels = await getHotelsByCity({
       cityCode: 'NYC',
-      checkInDate: '2026-06-15',
-      checkOutDate: '2026-06-18',
+      radius: 20,
+      radiusUnit: 'MILE',
+      // checkInDate: '2026-06-15',
+      // checkOutDate: '2026-06-18',
       adults: 2,
       roomQuantity: 1
     });
@@ -53,5 +56,5 @@ async function testHotelSearch() {
 (async () => {
   await testFlightSearch();
   await testFlightInspiration();
-  await testHotelSearch(); // todo: check that it works, test flight booking and amenities search.
+  await testHotelList();
 })();
