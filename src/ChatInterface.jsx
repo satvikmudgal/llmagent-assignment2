@@ -14,14 +14,21 @@ function ChatInterface() {
     const [streamingMessage, setStreamingMessage] = useState(null);
     const [currentFrogSprite, setCurrentFrogSprite] = useState(Math.floor(Math.random() * FROG_SPRITES.length));
     const messagesEndRef = useRef(null);
+    const chatMessagesRef = useRef(null);
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        // Only scroll the chat messages container, not the entire page
+        if (chatMessagesRef.current) {
+            chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+        }
     };
 
     useEffect(() => {
-        scrollToBottom();
-    }, [messages]);
+        // Only scroll if there are messages or if streaming
+        if (messages.length > 0 || streamingMessage) {
+            scrollToBottom();
+        }
+    }, [messages, streamingMessage]);
 
     const handleFrogClick = () => {
         // Cycle to the next sprite
@@ -119,11 +126,11 @@ function ChatInterface() {
                     style={{ cursor: 'pointer' }}
                 />
             </div>
-            <div className="chat-messages">
+            <div className="chat-messages" ref={chatMessagesRef}>
                 {messages.length === 0 && (
                     <div className="chat-empty">
-                        <h3>Welcome! I'm L1LY, your travel planning assistant.</h3>
-                        <p>Tell me about your travel plans in natural language! For example:</p>
+                        <h3>Hi! I'm L1LY! Welcome to my LaunchPad!</h3>
+                        <p>Im your personal travel planning assistant. Tell me about your travel plans in natural language! For example:</p>
                         <ul className="example-list">
                             <li>"I want to go to Paris for 5 days in March"</li>
                             <li>"Plan a beach vacation to Hawaii with a $2000 budget"</li>

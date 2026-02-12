@@ -1,22 +1,40 @@
 .app {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #BCD890;
+  overflow: visible;
 }
 
 .header {
   text-align: center;
-  padding: 3rem 2rem 2rem;
+  padding: 2rem 2rem 0rem;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-box {
+  background: white;
+  border-radius: 20px;
+  padding: .5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: inline-block;
 }
 
 .title {
   font-size: 3.5rem;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #BCD890 0%, #F9A6BA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
@@ -27,14 +45,16 @@
 }
 
 .main-content {
-  flex: 1;
+  flex: 1 1 0;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  position: relative;
+  overflow: visible;
+  align-content: start;
 }
 
 .card {
@@ -43,17 +63,42 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+/* Lilypad decorations positioned absolutely inside .card, centered on bottom-left and top-right and larger */
+.lilypad-decoration {
+  position: absolute;
+  width: 500px;
+  height: auto;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
 }
+
+.lilypad-top-right {
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%) rotate(20deg);
+}
+
+.lilypad-bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-35%, 35%) rotate(-20deg) scaleX(-1);
+}
+
 
 .card-header {
   background: #E7F8CF;
   color: black;
   padding: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .card-header h2 {
@@ -63,7 +108,13 @@
 }
 
 .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
+  position: relative;
+  z-index: 1;
+  min-height: 0;
 }
 
 .counter-display {
@@ -149,10 +200,7 @@
 }
 
 .footer {
-  text-align: center;
-  padding: 2rem;
-  color: white;
-  opacity: 0.9;
+  display: none;
 }
 
 .trip-form {
