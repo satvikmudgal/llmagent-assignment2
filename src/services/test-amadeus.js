@@ -86,7 +86,7 @@ async function testHotelOffersByCity() {
 // Run all tests
 (async () => {
   await testFlightSearch();
-  // await testFlightInspiration();
-  await testHotelList();
+  // await testFlightInspiration(); // doesn't work
+  // await testHotelList(); // now redundant
   await testHotelOffersByCity();
 })();

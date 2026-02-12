@@ -96,8 +96,6 @@ export async function searchHotelOffersByCity(listParams, searchParams = {}) {
   return allOffers.flatMap(offerInfo => {
     const hotelListInfo = hotelInfoMap.get(offerInfo.hotel.hotelId);
 
-    console.log(hotelListInfo);
-
     return (offerInfo.offers || []).map(offer => ({
       chainCode: offerInfo.hotel?.chainCode,
       name: offerInfo.hotel?.name,
