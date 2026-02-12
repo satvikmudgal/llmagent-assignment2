@@ -46,12 +46,12 @@
 
 .main-content {
   flex: 1 1 0;
-  max-width: 1200px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   position: relative;
   overflow: visible;
   align-content: start;

@@ -1,8 +1,8 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 600px;
-    max-height: 80vh;
+    height: 85vh;
+    max-height: 90vh;
     background: white;
     border-radius: 12px;
     overflow: hidden;
@@ -17,17 +17,17 @@
     padding: 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-bottom: 2px solid #e0e0e0;
-    min-height: 100px;
-    height: 200px;
+    min-height: 50px;
+    height: 100px;
     position: relative;
     overflow: hidden;
 }
 
 .frog-sprite {
-    max-width: 400px;
-    max-height: 300px;
+    max-width: 200px;
+    max-height: 150px;
     width: auto;
-    height: 300px;
+    height: 150px;
     object-fit: contain;
     border-radius: 12px;
     transition: opacity 0.15s ease;
@@ -130,6 +130,10 @@
     color: #333;
 }
 
+.chat-message.assistant .message-content:has(.result-section) {
+    max-width: 95%;
+}
+
 .typing-indicator {
     display: inline-block;
     animation: pulse 1.5s ease-in-out infinite;
@@ -217,6 +221,317 @@
 .chat-send-button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* Flight results cards */
+.flight-results {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.flight-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: box-shadow 0.2s ease;
+}
+
+.flight-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flight-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.flight-card-rank {
+    background: #BCD890;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.flight-card-airline {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.flight-card-price {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #2a7d2e;
+}
+
+.flight-card-currency {
+    font-weight: 400;
+    font-size: 0.75em;
+    color: #666;
+}
+
+.flight-card-route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flight-card-endpoint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 55px;
+}
+
+.flight-card-time {
+    font-weight: 700;
+    font-size: 0.95em;
+    color: #222;
+}
+
+.flight-card-airport {
+    font-size: 0.8em;
+    color: #888;
+    font-weight: 500;
+}
+
+.flight-card-date {
+    font-size: 0.7em;
+    color: #aaa;
+}
+
+.flight-card-path {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.flight-card-duration {
+    font-size: 0.75em;
+    color: #666;
+    font-weight: 500;
+}
+
+.flight-card-line {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0;
+}
+
+.flight-card-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #BCD890;
+    flex-shrink: 0;
+}
+
+.flight-card-dash {
+    flex: 1;
+    height: 2px;
+    background: #ccc;
+}
+
+.flight-card-stop-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #F9A6BA;
+    flex-shrink: 0;
+}
+
+.flight-card-stops {
+    font-size: 0.7em;
+    color: #999;
+}
+
+.flight-card-cabin {
+    margin-top: 6px;
+    font-size: 0.7em;
+    color: #888;
+    text-transform: capitalize;
+    text-align: right;
+}
+
+/* Result sections */
+.result-section {
+    margin-top: 12px;
+}
+
+.result-section-title {
+    font-weight: 700;
+    font-size: 0.85em;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #BCD890;
+}
+
+/* Hotel cards */
+.hotel-results {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.hotel-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: box-shadow 0.2s ease;
+}
+
+.hotel-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.hotel-card-rank {
+    background: #F9D6DE;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.hotel-card-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.hotel-card-price {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #2a7d2e;
+}
+
+.hotel-card-currency {
+    font-weight: 400;
+    font-size: 0.75em;
+    color: #666;
+}
+
+.hotel-card-details {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.hotel-card-rating {
+    color: #f0a500;
+    font-size: 0.85em;
+}
+
+.hotel-card-room {
+    font-size: 0.8em;
+    color: #666;
+    text-transform: capitalize;
+}
+
+.hotel-card-desc {
+    font-size: 0.8em;
+    color: #555;
+    margin: 4px 0;
+    line-height: 1.3;
+}
+
+.hotel-card-dates {
+    font-size: 0.75em;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* Activity cards */
+.activity-results {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.activity-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.activity-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.activity-card-rank {
+    background: #d4edda;
+    color: #333;
+    font-weight: 700;
+    font-size: 0.75em;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.activity-card-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.activity-card-price {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #2a7d2e;
+}
+
+.activity-card-currency {
+    font-weight: 400;
+    font-size: 0.75em;
+    color: #666;
+}
+
+.activity-card-desc {
+    font-size: 0.8em;
+    color: #555;
+    margin: 4px 0;
+    line-height: 1.4;
+}
+
+.activity-card-meta {
+    font-size: 0.75em;
+    color: #888;
 }
 
 /* Scrollbar styling */

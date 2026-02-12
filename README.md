@@ -1,6 +1,6 @@
 # Travel Assistant - LLM Chat Interface
 
-A simple chat interface for travel planning powered by DSPy and React.
+A travel planning assistant powered by Google Gemini function calling and React. The agent uses an agentic loop to search for flights, hotels, and activities using the Amadeus API.
 
 ## Setup
 
@@ -20,19 +20,20 @@ pip install -r requirements.txt
 ```
 
 3. Set up your API key:
-   - Copy `.env.example` to `.env`:
+   - Create a `.env` file in the project root:
      ```bash
-     cp .env.example .env
+     echo "GOOGLE_API_KEY=your-actual-api-key-here" > .env
      ```
-   - Edit `.env` and add your Google Gemini API key:
+   - Or edit `.env` manually and add:
      ```
      GOOGLE_API_KEY=your-actual-api-key-here
      ```
-   - Or export it directly:
+   - Alternatively, export it directly in your shell:
      ```bash
      export GOOGLE_API_KEY="your-actual-api-key-here"
      ```
    - Get your API key from: https://makersuite.google.com/app/apikey
+   - **Important**: After updating your API key, restart the Flask server completely (kill the old process and start fresh) for the new key to take effect.
 
 4. Run the Flask server:
 ```bash
@@ -40,6 +41,11 @@ python app.py
 ```
 
 The server will run on `http://localhost:5001` (port 5000 is used by macOS AirPlay)
+
+**Note on Rate Limits**: The Gemini API free tier has strict rate limits (typically 15-20 requests per day). If you encounter rate limit errors:
+- Wait a few minutes between requests
+- Check your quota at https://ai.dev/rate-limit
+- The agent makes multiple API calls per user message (up to 5 iterations), so use it sparingly on the free tier
 
 ### Frontend (React)
 
@@ -59,13 +65,16 @@ The app will run on `http://localhost:5173` (or another port if 5173 is in use)
 
 - **Frontend**: React chat interface (`src/ChatInterface.jsx`)
 - **Backend**: Flask API server (`app.py`)
-- **DSPy Module**: RAG system (`dspy_module.py`)
+- **Agent**: Gemini function calling agent (`agent.py`) that uses an agentic loop to decide which tools to call
+- **Tools**: Amadeus API integration for flights, hotels, and activities (`amadeus_service.py`)
 
-The chat interface sends user messages to the Flask API, which processes them through the DSPy RAG system and returns responses.
+The chat interface sends user messages to the Flask API, which processes them through the Gemini agent. The agent uses function calling to decide when to search for flights, hotels, or activities, and can make multiple iterations to complete a request.
 
 ## Files
 
 - `src/ChatInterface.jsx` - Main chat component
 - `app.py` - Flask API server
-- `dspy_module.py` - DSPy RAG module (refactored from dspy_rag.py)
+- `agent.py` - Gemini function calling agent with agentic loop
+- `amadeus_service.py` - Amadeus API integration for flights, hotels, and activities
+- `iata_converter.py` - City name to IATA airport code converter
 - `requirements.txt` - Python dependencies
