@@ -1,4 +1,4 @@
-import { searchFlightOffers, searchFlightInspiration, getHotelsByCity, fullPrettyOffers } from './api.js';
+import { searchFlightOffers, searchFlightInspiration, getHotelsByCity, fullPrettyOffers, searchHotelOffersByCity } from './api.js';
 
 
 async function testFlightSearch() {
@@ -52,9 +52,41 @@ async function testHotelList() {
   }
 }
 
+// Test 4: Hotel Offers By City
+async function testHotelOffersByCity() {
+  try {
+    const offers = await searchHotelOffersByCity(
+      // Hotel list search params
+      {
+        cityCode: 'NYC',
+        radius: 20,
+        radiusUnit: 'MILE',
+        ratings: '4,5',
+      },
+      // Hotel offer search params
+      {
+        checkInDate: '2026-03-15',
+        checkOutDate: '2026-03-18',
+        adults: 2,
+        roomQuantity: 1,
+        currency: 'USD',
+        bestRateOnly: true
+      }
+    );
+    console.log(`Found ${offers.length} hotel offers in NYC`);
+    if (offers.length > 0) {
+      console.log('First offer:', offers[0]);
+    }
+  } catch (err) {
+    console.error('Error testing hotel offers by city!');
+    console.error('Error! Description:', err.description);
+  }
+}
+
 // Run all tests
 (async () => {
   await testFlightSearch();
-  await testFlightInspiration();
+  // await testFlightInspiration();
   await testHotelList();
+  await testHotelOffersByCity();
 })();
