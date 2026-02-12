@@ -7,7 +7,7 @@ async function testFlightSearch() {
       originLocationCode: 'LAX',
       destinationLocationCode: 'JFK',
       departureDate: '2026-02-20',
-      returnDate: '2026-04-01',
+      returnDate: '2026-04-01', // comment this line out to compare the different objects returned for no-return trips
       adults: 1,
       max: 3
     });
