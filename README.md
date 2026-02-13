@@ -1,3 +1,12 @@
+# work split disclosure 
+Group 5. Simone, Satvik, Julia
+All members of the group contributed and communicated thoroughly during the project. 
+Julia focused on handling and parsing the Amadeus API flight information.
+Satvik focused on designing the prompt system and setting up the backend.
+Simone created the frontend UI/UX and handled the integration of the gemini tool system.
+
+
+
 # Travel Assistant - LLM Chat Interface
 
 A travel planning assistant powered by Google Gemini function calling and React. The agent uses an agentic loop to search for flights, hotels, and activities using the Amadeus API.
